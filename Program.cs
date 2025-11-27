@@ -41,14 +41,12 @@ app.MapGet("/topvsbottom/{league}", async (string league, FootballDataService fo
         if (list == null) return Results.BadRequest("Não foi possível carregar os jogos da liga.");
 
         // 2.1) determinar próxima rodada (matchday)
-        // tentativa 1: procurar jogos futuros (utcDate >= agora) e pegar o menor matchday dentre eles
         DateTime now = DateTime.UtcNow;
         int? upcomingMatchday = list
             .Select(m =>
             {
-                // safe parsing of utcDate and matchday
                 DateTime dt;
-                var utc = (string?)m["utcDate"];
+                var utc = (string?)m["utcDate"]; 
                 bool parsed = DateTime.TryParse(utc, CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal | DateTimeStyles.AssumeUniversal, out dt);
                 return new
                 {
@@ -63,13 +61,11 @@ app.MapGet("/topvsbottom/{league}", async (string league, FootballDataService fo
             .Select(x => x.Matchday)
             .FirstOrDefault();
 
-        // tentativa 2 (fallback): se não houver partidas futuras (p. ex. temporada finalizada, ou todas com datas antigas),
-        // procurar pelo menor matchday que contenha partidas com status diferente de FINISHED (por exemplo SCHEDULED/POSTPONED)
         if (upcomingMatchday == null)
         {
             upcomingMatchday = list
                 .Where(m => ((string?)m["status"]) != "FINISHED")
-                .Select(m => (int?)m["matchday"])
+                .Select(m => (int?)m["matchday"]) 
                 .Where(md => md != null)
                 .OrderBy(md => md)
                 .FirstOrDefault();
@@ -77,7 +73,6 @@ app.MapGet("/topvsbottom/{league}", async (string league, FootballDataService fo
 
         if (upcomingMatchday == null)
         {
-            // se ainda assim for nulo, significa que não conseguimos determinar uma próxima rodada
             return Results.Ok(new { message = "Não há próxima rodada disponível (todos os jogos podem estar finalizados ou dados insuficientes)." });
         }
 
@@ -141,6 +136,7 @@ app.MapGet("/leagues", async (FootballDataService footballService) =>
     {
         return Results.Problem(ex.Message);
     }
-}).WithName("GetLeagues").WithOpenApi();
+})    
+.WithName("GetLeagues").WithOpenApi();
 
 app.Run();
