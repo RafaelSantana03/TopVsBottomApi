@@ -1,9 +1,14 @@
+using System.Linq;
+using TopVsBottom.Api.Services;
+using Newtonsoft.Json.Linq;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddHttpClient<FootballDataService>();
 
 var app = builder.Build();
 
@@ -16,29 +21,47 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-var summaries = new[]
+app.MapGet("/topvsbottom/{league}", async (string league, FootballDataService footballService) =>
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+    try
+    {
+        // 1) pegar tabela
+        var standings = await footballService.GetStandings(league);
+        var table = standings["standings"]?[0]?["table"] as JArray;
+        if (table == null) return Results.BadRequest("Não foi possível carregar a tabela da liga.");
 
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast")
-.WithOpenApi();
+        var top4 = table.Take(4).Select(t => (string)t["team"]?["name"]).ToList();
+        var bottom4 = table.Reverse().Take(4).Select(t => (string)t["team"]?["name"]).ToList();
+
+        // 2) pegar partidas
+        var matches = await footballService.GetMatches(league);
+        var list = matches["matches"] as JArray;
+        if (list == null) return Results.BadRequest("Não foi possível carregar os jogos da liga.");
+
+        // 3) filtrar jogos Top4 x Bottom4
+        var result = list
+            .Where(m =>
+            {
+                var home = (string)m["homeTeam"]?["name"];
+                var away = (string)m["awayTeam"]?["name"];
+                return (top4.Contains(home) && bottom4.Contains(away))
+                    || (top4.Contains(away) && bottom4.Contains(home));
+            })
+            .Select(m => new
+            {
+                Home = (string)m["homeTeam"]?["name"],
+                Away = (string)m["awayTeam"]?["name"],
+                Status = (string)m["status"],
+                UtcDate = (string)m["utcDate"]
+            })
+            .ToList();
+
+        return Results.Ok(result);
+    }
+    catch (Exception ex)
+    {
+        return Results.Problem(ex.Message);
+    }
+});
 
 app.Run();
-
-internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
