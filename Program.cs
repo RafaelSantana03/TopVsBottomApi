@@ -78,7 +78,21 @@ app.MapGet("/topvsbottom/{league}", async (string league, FootballDataService fo
 
         // 3) filtrar apenas jogos da próxima rodada
         var nextRoundMatches = list
-            .Where(m => (int?)m["matchday"] == upcomingMatchday)
+            .Select(m =>
+            {
+                DateTime dt;
+                var utc = (string?)m["utcDate"];
+                bool parsed = DateTime.TryParse(utc, CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal | DateTimeStyles.AssumeUniversal, out dt);
+                return new
+                {
+                    Match = m,
+                    Date = parsed ? dt : DateTime.MinValue
+                };
+            })
+            .Where(x => (int?)x.Match["matchday"] == upcomingMatchday
+                        && ((string?)x.Match["status"]) != "FINISHED"
+                        && x.Date >= now)
+            .Select(x => x.Match)
             .ToList();
 
         // 4) filtrar jogos Top4 x Bottom4 dentro dessa rodada
