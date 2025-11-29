@@ -32,28 +32,21 @@ A API utiliza os dados da plataforma **Football-Data.org**, com cache automátic
 }
 ```
 
-# 🧠 Regras aplicadas no cálculo
+### 🧠 Regras aplicadas no cálculo
 
 Para cada liga:
-
 Busca a tabela de classificação
-
 Seleciona Top 4 e Bottom 4
-
 Busca todas as partidas da liga
-
 Determina a próxima rodada com base no horário atual
 
 Filtra apenas partidas:
-
 Não finalizadas
-
 Que acontecem na próxima rodada
-
 Com confronto Top 4 x Bottom 4
 
 
-## 🕒 Cache automático
+### 🕒 Cache automático
 | Tipo                      | Tempo de cache |
 | ------------------------- | -------------- |
 | Standings (classificação) | 12 horas       |
@@ -61,21 +54,21 @@ Com confronto Top 4 x Bottom 4
 | Leagues (competições)     | 24 horas       |
 
 
-# 🔧 Como executar o projeto localmente
-## 1️⃣ Clonar o repositório
+## 🔧 Como executar o projeto localmente
+### 1️⃣ Clonar o repositório
 git clone https://github.com/RafaelSantana03/TopVsBottomApi.git
 
-## 2️⃣ Acessar o projeto
+### 2️⃣ Acessar o projeto
 cd TopVsBottomApi
 
-## 3️⃣ Configurar a chave da API
+### 3️⃣ Configurar a chave da API
 Inserir no appsettings.json:
 
 {
   "FOOTBALL_DATA_API_KEY": "SUA_CHAVE_AQUI"
 }
 
-## 4️⃣ Executar a aplicação
+### 4️⃣ Executar a aplicação
 dotnet run
 A API ficará disponível em:
 https://localhost:7241/swagger
