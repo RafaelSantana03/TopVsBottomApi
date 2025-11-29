@@ -6,6 +6,7 @@ A:\PROJETOS\TopVsBottom.Api\TopVsBottom.Api\bin\Debug\net8.0\TopVsBottom.Api.dep
 A:\PROJETOS\TopVsBottom.Api\TopVsBottom.Api\bin\Debug\net8.0\TopVsBottom.Api.runtimeconfig.json
 A:\PROJETOS\TopVsBottom.Api\TopVsBottom.Api\bin\Debug\net8.0\TopVsBottom.Api.dll
 A:\PROJETOS\TopVsBottom.Api\TopVsBottom.Api\bin\Debug\net8.0\TopVsBottom.Api.pdb
+A:\PROJETOS\TopVsBottom.Api\TopVsBottom.Api\bin\Debug\net8.0\HttpClientFactoryExtensions.dll
 A:\PROJETOS\TopVsBottom.Api\TopVsBottom.Api\bin\Debug\net8.0\Microsoft.AspNetCore.OpenApi.dll
 A:\PROJETOS\TopVsBottom.Api\TopVsBottom.Api\bin\Debug\net8.0\Microsoft.OpenApi.dll
 A:\PROJETOS\TopVsBottom.Api\TopVsBottom.Api\bin\Debug\net8.0\Newtonsoft.Json.dll
@@ -29,10 +30,10 @@ A:\PROJETOS\TopVsBottom.Api\TopVsBottom.Api\obj\Debug\net8.0\staticwebassets.bui
 A:\PROJETOS\TopVsBottom.Api\TopVsBottom.Api\obj\Debug\net8.0\staticwebassets.build.json.cache
 A:\PROJETOS\TopVsBottom.Api\TopVsBottom.Api\obj\Debug\net8.0\staticwebassets.development.json
 A:\PROJETOS\TopVsBottom.Api\TopVsBottom.Api\obj\Debug\net8.0\staticwebassets.build.endpoints.json
-A:\PROJETOS\TopVsBottom.Api\TopVsBottom.Api\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 A:\PROJETOS\TopVsBottom.Api\TopVsBottom.Api\obj\Debug\net8.0\TopVsBot.2D8C5DAF.Up2Date
 A:\PROJETOS\TopVsBottom.Api\TopVsBottom.Api\obj\Debug\net8.0\TopVsBottom.Api.dll
 A:\PROJETOS\TopVsBottom.Api\TopVsBottom.Api\obj\Debug\net8.0\refint\TopVsBottom.Api.dll
 A:\PROJETOS\TopVsBottom.Api\TopVsBottom.Api\obj\Debug\net8.0\TopVsBottom.Api.pdb
 A:\PROJETOS\TopVsBottom.Api\TopVsBottom.Api\obj\Debug\net8.0\TopVsBottom.Api.genruntimeconfig.cache
 A:\PROJETOS\TopVsBottom.Api\TopVsBottom.Api\obj\Debug\net8.0\ref\TopVsBottom.Api.dll
+A:\PROJETOS\TopVsBottom.Api\TopVsBottom.Api\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
