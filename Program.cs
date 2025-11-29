@@ -20,9 +20,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-// ⚠ HTTPS habilitado, mas sem redirecionar obrigatório
-// (evita erro caso HTTP seja usado)
-//// app.UseHttpsRedirection(); // deixe comentado para evitar erros de certificado
 
 app.MapGet("/topvsbottom/{league}", async (string league, FootballDataService footballService) =>
 {
