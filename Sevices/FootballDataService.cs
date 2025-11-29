@@ -27,5 +27,12 @@ namespace TopVsBottom.Api.Services
             var json = await _httpClient.GetStringAsync(url);
             return JObject.Parse(json);
         }
+
+        public async Task<JObject> GetCompetitions()
+        {
+            var url = $"{_config["FootballData:BaseUrl"]}/competitions";
+            var json = await _httpClient.GetStringAsync(url);
+            return JObject.Parse(json);
+        }
     }
 }

@@ -1,0 +1,45 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "TopVsBottom.Api",
+    "version": "1.0"
+  },
+  "paths": {
+    "/topvsbottom/{league}": {
+      "get": {
+        "tags": [
+          "TopVsBottom.Api"
+        ],
+        "parameters": [
+          {
+            "name": "league",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/leagues": {
+      "get": {
+        "tags": [
+          "TopVsBottom.Api"
+        ],
+        "operationId": "GetLeagues",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": { }
+}

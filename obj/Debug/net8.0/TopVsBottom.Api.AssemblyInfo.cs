@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TopVsBottom.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d0c4204b4bc650ea2fd5da3c3460093712b4f726")]
 [assembly: System.Reflection.AssemblyProductAttribute("TopVsBottom.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TopVsBottom.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
