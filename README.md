@@ -32,7 +32,7 @@ A API utiliza os dados da plataforma **Football-Data.org**, com cache automátic
 }
 ```
 
-🧠 Regras aplicadas no cálculo
+# 🧠 Regras aplicadas no cálculo
 
 Para cada liga:
 
@@ -82,6 +82,7 @@ https://localhost:7241/swagger
 
 
 🧱 Tecnologias utilizadas
+
 .NET 8
 Minimal API
 HttpClient
@@ -89,6 +90,7 @@ MemoryCache
 Swagger
 
 📌 Objetivo do projeto
+
 Este projeto foi criado com fins educacionais, para praticar:
 Consumo de APIs externas
 Tratamento e filtragem de dados
